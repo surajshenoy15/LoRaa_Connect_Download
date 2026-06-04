@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f7fc;
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* dotted texture used in the dark hero band */
+.dot-grid {
+  background-image: radial-gradient(rgba(53, 103, 201, 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
