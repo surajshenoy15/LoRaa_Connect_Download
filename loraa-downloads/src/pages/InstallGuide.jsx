@@ -223,18 +223,20 @@ export default function InstallGuide() {
               className="animate-floatUp mx-auto mt-6 flex w-full max-w-md flex-col gap-3 sm:mt-7 sm:max-w-none sm:flex-row sm:justify-center lg:mx-0 lg:justify-start"
               style={{ animationDelay: "220ms" }}
             >
-              <a
-                href={LINKS.apkUrl}
-                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-[13px] font-extrabold text-white shadow-lg shadow-black/10 transition hover:bg-navyMid active:scale-[0.98] sm:w-auto sm:px-5 sm:py-3.5 sm:text-[14px]"
-              >
-                <Download size={17} strokeWidth={2.4} />
-                Download Android APK
-                <ArrowRight
-                  size={16}
-                  strokeWidth={2.5}
-                  className="transition group-hover:translate-x-0.5"
-                />
-              </a>
+             <a
+  href={LINKS.apkUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3.5 text-[14px] font-extrabold text-white shadow-lg shadow-black/10 transition hover:bg-navyMid active:scale-[0.98] sm:w-auto"
+>
+  <Download size={18} strokeWidth={2.5} />
+  Download Android APK
+  <ArrowRight
+    size={16}
+    strokeWidth={2.5}
+    className="transition group-hover:translate-x-0.5"
+  />
+</a>
 
               <a
                 href={LINKS.testFlightUrl}
