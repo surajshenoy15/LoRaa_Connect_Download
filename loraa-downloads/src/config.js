@@ -5,7 +5,7 @@
 
 export const LINKS = {
   // Android
-  apkUrl: "https://github.com/surajshenoy15/loraa-connect_apk/releases/download/v1.0.0/loraa-connect.apk",   // e.g. https://cdn.example.com/loraa-connect.apk
+  apkUrl: "https://github.com/surajshenoy15/loraa-connect_apk/releases/download/v2.0.0/Loraa-connect-v2.apk",   // e.g. https://cdn.example.com/loraa-connect.apk
   apkVersion: "v1.0.0",
   apkSize: "32 MB",
   androidMin: "Android 8.0+",
