@@ -120,7 +120,7 @@ export default function Footer() {
             </p>
 
             <a
-              href={`mailto:${SUPPORT.email}`}
+              href={`mailto:${SUPPORT.email}` }
               className="group mt-4 flex min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 transition hover:border-white/20 hover:bg-white/10"
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10">

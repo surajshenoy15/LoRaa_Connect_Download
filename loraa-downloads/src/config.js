@@ -11,7 +11,7 @@ export const LINKS = {
   androidMin: "Android 8.0+",
 
   // iOS
-  testFlightUrl: "PUT_TESTFLIGHT_LINK_HERE", // e.g. https://testflight.apple.com/join/XXXXXXXX
+  testFlightUrl: "https://testflight.apple.com/join/4GdTkGGt", // e.g. https://testflight.apple.com/join/XXXXXXXX
   iosMin: "iOS 15+",
 
   // Public stores ("" = Coming soon)
