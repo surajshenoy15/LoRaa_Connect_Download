@@ -23,6 +23,11 @@ const androidSteps = [
     body: "Tap the download button and wait for the LoRaa Connect APK to save in your Downloads folder.",
   },
   {
+    icon: ShieldCheck,
+    title: "Verify the APK",
+    body: "Optionally open the VirusTotal scan report to verify the APK credibility before installing.",
+  },
+  {
     icon: PackageOpen,
     title: "Open the downloaded file",
     body: "Open the APK from your notification panel, browser downloads, or the Files app.",
@@ -73,18 +78,14 @@ function StepCard({ index, step, isLast }) {
 
   return (
     <div className="relative flex min-w-0 gap-3 sm:gap-4">
-      {/* Step number and connector */}
       <div className="flex shrink-0 flex-col items-center">
         <div className="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-navy text-[12px] font-extrabold text-white shadow-sm sm:h-10 sm:w-10 sm:text-[13px]">
           {index}
         </div>
 
-        {!isLast && (
-          <div className="mt-2 h-full min-h-8 w-px bg-bordr" />
-        )}
+        {!isLast && <div className="mt-2 h-full min-h-8 w-px bg-bordr" />}
       </div>
 
-      {/* Step content */}
       <div className={`min-w-0 flex-1 ${isLast ? "" : "pb-4 sm:pb-5"}`}>
         <div className="rounded-2xl border border-bordr bg-white p-4 shadow-soft transition hover:border-accent/25 hover:shadow-card sm:p-5">
           <div className="flex min-w-0 items-start gap-3">
@@ -92,11 +93,7 @@ function StepCard({ index, step, isLast }) {
               {step.isApple ? (
                 <AppleLogo size={16} color="#0E1726" />
               ) : (
-                <Icon
-                  size={17}
-                  className="text-navyMid"
-                  strokeWidth={2.2}
-                />
+                <Icon size={17} className="text-navyMid" strokeWidth={2.2} />
               )}
             </div>
 
@@ -186,6 +183,9 @@ function PlatformGuide({
 }
 
 export default function InstallGuide() {
+  const hasVirusTotalUrl =
+    LINKS.virusTotalUrl && LINKS.virusTotalUrl.trim() !== "";
+
   return (
     <div className="overflow-hidden bg-white">
       {/* Hero */}
@@ -220,23 +220,36 @@ export default function InstallGuide() {
             </p>
 
             <div
-              className="animate-floatUp mx-auto mt-6 flex w-full max-w-md flex-col gap-3 sm:mt-7 sm:max-w-none sm:flex-row sm:justify-center lg:mx-0 lg:justify-start"
+              className="animate-floatUp mx-auto mt-6 flex w-full max-w-md flex-col gap-3 sm:mt-7 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center lg:mx-0 lg:justify-start"
               style={{ animationDelay: "220ms" }}
             >
-             <a
-  href={LINKS.apkUrl}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3.5 text-[14px] font-extrabold text-white shadow-lg shadow-black/10 transition hover:bg-navyMid active:scale-[0.98] sm:w-auto"
->
-  <Download size={18} strokeWidth={2.5} />
-  Download Android APK
-  <ArrowRight
-    size={16}
-    strokeWidth={2.5}
-    className="transition group-hover:translate-x-0.5"
-  />
-</a>
+              <a
+                href={LINKS.apkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3.5 text-[14px] font-extrabold text-white shadow-lg shadow-black/10 transition hover:bg-navyMid active:scale-[0.98] sm:w-auto"
+              >
+                <Download size={18} strokeWidth={2.5} />
+                Download Android APK
+                <ArrowRight
+                  size={16}
+                  strokeWidth={2.5}
+                  className="transition group-hover:translate-x-0.5"
+                />
+              </a>
+
+              {hasVirusTotalUrl && (
+                <a
+                  href={LINKS.virusTotalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-[13px] font-bold text-white backdrop-blur-sm transition hover:bg-white/15 active:scale-[0.98] sm:w-auto sm:px-5 sm:py-3.5 sm:text-[14px]"
+                >
+                  <ShieldCheck size={16} strokeWidth={2.4} />
+                  Verify APK
+                  <ExternalLink size={14} strokeWidth={2.4} />
+                </a>
+              )}
 
               <a
                 href={LINKS.testFlightUrl}
@@ -306,7 +319,7 @@ export default function InstallGuide() {
                     </div>
 
                     <span className="rounded-lg bg-white px-2 py-1 text-[9px] font-extrabold text-success">
-                      5 steps
+                      6 steps
                     </span>
                   </div>
 
@@ -339,7 +352,8 @@ export default function InstallGuide() {
 
                     <p className="text-[10px] leading-5 text-muted sm:text-[11px]">
                       Always install LoRaa Connect only from this official
-                      website or the official TestFlight invitation.
+                      website, the official VirusTotal scan report, or the
+                      official TestFlight invitation.
                     </p>
                   </div>
                 </div>
@@ -377,16 +391,33 @@ export default function InstallGuide() {
             }
             steps={androidSteps}
             action={
-              <a
-                href={LINKS.apkUrl}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-[12px] font-extrabold text-white transition hover:bg-navyMid active:scale-[0.98] sm:w-auto"
-              >
-                <Download size={15} strokeWidth={2.4} />
-                Download APK
-              </a>
+              <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+                <a
+                  href={LINKS.apkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-[12px] font-extrabold text-white transition hover:bg-navyMid active:scale-[0.98] sm:w-auto"
+                >
+                  <Download size={15} strokeWidth={2.4} />
+                  Download APK
+                </a>
+
+                {hasVirusTotalUrl && (
+                  <a
+                    href={LINKS.virusTotalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-bordr bg-white px-4 py-2.5 text-[12px] font-extrabold text-navy transition hover:border-accent/30 hover:shadow-card sm:w-auto"
+                  >
+                    <ShieldCheck size={15} strokeWidth={2.4} />
+                    VirusTotal
+                    <ExternalLink size={13} strokeWidth={2.4} />
+                  </a>
+                )}
+              </div>
             }
             noteType="warning"
-            note="Only install the APK from this official page. Do not download or install copies from other websites."
+            note="Only install the APK from this official page. You can also verify the APK using the VirusTotal scan report before installing."
           />
 
           <PlatformGuide
@@ -428,8 +459,8 @@ export default function InstallGuide() {
                 </p>
 
                 <p className="mt-2 max-w-xl text-[12px] leading-6 text-white/60 sm:text-[13px]">
-                  Contact the LoRaa Connect support team for help with downloads,
-                  permissions, TestFlight, or account access.
+                  Contact the LoRaa Connect support team for help with
+                  downloads, permissions, TestFlight, or account access.
                 </p>
               </div>
 
